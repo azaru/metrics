@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  DBUsername:
+    Description: "Username for MySQL database"
+    Type: String
+  DBPassword:
+    Description: "Password for MySQL database"
+    Type: String
+    NoEcho: true
+  DBInstanceIdentifier:
+    Description: "Identifier for the RDS instance"
+    Type: String
+    Default: "codetest-rds"
+
+Resources:
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: !Ref DBInstanceIdentifier
+      DBInstanceClass: db.t2.micro
+      AllocatedStorage: 20
+      Engine: MySQL
+      MasterUsername: !Ref DBUsername
+      MasterUserPassword: !Ref DBPassword
+      DBName: codetestdb

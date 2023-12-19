@@ -1,0 +1,97 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  ApiGatewayID:
+    Description: "The ID of the API Gateway"
+    Type: String
+  StageName:
+    Description: "The name of the stage"
+    Type: String
+
+Resources:
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: "CloudFront Distribution for React App and API Gateway"
+        DefaultRootObject: "index.html"
+        Origins:
+          - Id: "S3Origin"
+            DomainName: !GetAtt ReactAppS3Bucket.DomainName
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
+          - Id: "ApiGatewayOrigin"
+            DomainName: !Sub "${ApiGatewayID}.execute-api.${AWS::Region}.amazonaws.com"
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: https-only
+        DefaultCacheBehavior:
+          TargetOriginId: "S3Origin"
+          ViewerProtocolPolicy: "redirect-to-https"
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: "none"
+        CacheBehaviors:
+          - PathPattern: "/api/*"
+            TargetOriginId: "ApiGatewayOrigin"
+            ViewerProtocolPolicy: "redirect-to-https"
+            AllowedMethods:
+              - DELETE
+              - GET
+              - HEAD
+              - OPTIONS
+              - PATCH
+              - POST
+              - PUT
+            CachedMethods:
+              - GET
+              - HEAD
+            ForwardedValues:
+              QueryString: true
+              Headers:
+                - "Authorization"
+              Cookies:
+                Forward: "all"
+  
+
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: "OAI for React App"
+
+  ReactAppS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-s3-${StageName}"
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
+        ErrorDocument: "index.html"
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ReactAppS3Bucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              CanonicalUser: !GetAtt CloudFrontOriginAccessIdentity.S3CanonicalUserId            
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${ReactAppS3Bucket}/*"
+
+Outputs:
+  CloudFrontURL:
+    Description: The URL of the CloudFront distribution
+    Value: !GetAtt CloudFrontDistribution.DomainName
+    Export:
+      Name: CloudFrontURL
