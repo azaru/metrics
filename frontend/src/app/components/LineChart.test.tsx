@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import LineChart from './LineChart';
 
-// Mock the ResponsiveLine component
 jest.mock('@nivo/line', () => ({
   ResponsiveLine: () => <div>Mocked ResponsiveLine</div>,
 }));

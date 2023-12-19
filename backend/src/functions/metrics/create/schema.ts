@@ -5,5 +5,4 @@ export default {
     timestamp: { type: 'number' },
     value: { type: 'number' }
   },
-  // required: ['name', 'timestamp', 'value']
 } as const;

@@ -2,7 +2,6 @@ import Create from './Create';
 import CONSTANTS from '../../../constants';
 import { DataPoint } from '../../types';
 
-// Mock the fetch function
 global.fetch = require('jest-fetch-mock');
 
 describe('Create function', () => {
@@ -14,11 +13,8 @@ describe('Create function', () => {
     };
 
     const url = new URL(CONSTANTS.host + CONSTANTS.endpoints.metrics.create.path);
-
-    // Call the Create function
     await Create(data);
 
-    // Check if fetch was called with the correct arguments
     expect(fetch).toHaveBeenCalledWith(url.toString(), {
       method: CONSTANTS.endpoints.metrics.create.method,
       headers: {

@@ -61,30 +61,24 @@ test('form validation works correctly', () => {
       </Provider>
     );
   
-    // Try to submit the form without entering a name
     fireEvent.change( getByLabelText("app.components.metricForm.metricName"), { target: { value: '' } });
     fireEvent.change( getByLabelText("app.components.metricForm.metricValue"), { target: { value: 10 } });
     fireEvent.change( getByLabelText("app.components.metricForm.metricTimestamp"), { target: { value: '2020-01-01T00:00' } });
     fireEvent.click(getByText("app.components.metricForm.actionSave"));
   
-    // Check if the correct error message is displayed
     expect(getByText("app.components.metricForm.error.name")).toBeInTheDocument();
   
-    // Try to submit the form with an invalid timestamp
     fireEvent.change( getByLabelText("app.components.metricForm.metricName"), { target: { value: 'Test' } });
     fireEvent.change( getByLabelText("app.components.metricForm.metricValue"), { target: { value: 10 } });
     fireEvent.change( getByLabelText("app.components.metricForm.metricTimestamp"), { target: { value: 'invalid date' } });
     fireEvent.click(getByText("app.components.metricForm.actionSave"));
   
-    // Check if the correct error message is displayed
     expect(getByText("app.components.metricForm.error.timestamp")).toBeInTheDocument();
 
-    // Try to submit the form with an invalid value
     fireEvent.change( getByLabelText("app.components.metricForm.metricName"), { target: { value: 'Test' } });
     fireEvent.change( getByLabelText("app.components.metricForm.metricValue"), { target: { value: 'invalid value' } });
     fireEvent.change( getByLabelText("app.components.metricForm.metricTimestamp"), { target: { value: '2020-01-01T00:00' } });
     fireEvent.click(getByText("app.components.metricForm.actionSave"));
 
-    // Check if the correct error message is displayed
     expect(getByText("app.components.metricForm.error.value")).toBeInTheDocument();
   });

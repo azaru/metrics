@@ -5,7 +5,6 @@ import { store } from './state/store';
 
 import App from './index';
 
-// Mock the modules
 jest.mock('i18next', () => ({
   t: (key: string) => key,
 }));

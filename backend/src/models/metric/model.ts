@@ -18,6 +18,5 @@ class Metric extends Model {
 }
 
 sequelize.addModels([Metric]);
-// sequelize.sync({ force: false }).then(() => console.log('Metrics table created')).catch((err) => console.log(err));
 
 export default Metric;

@@ -9,7 +9,6 @@ import Metric from './models/metric/model';
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max-min+1))+min;
       }
-    // from 7 days ago to 7 days from now
     const time = 2 * 24 * 60 * 60 * 1000;
     const from = Date.now() - time;
     const to = Date.now() + time;
