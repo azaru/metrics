@@ -1,0 +1,22 @@
+{
+    "app.index.metricsDashboard": "Tablero de Métricas",
+    "app.index.controls": "Controles",
+    "app.index.chart": "Gráfico",
+    "app.components.filters.error.from": "La fecha de inicio debe ser anterior a la fecha de fin",
+    "app.components.filters.error.to": "La fecha de fin debe ser posterior a la fecha de inicio",
+    "app.components.filters.filterMetrics": "Filtrar Métricas",
+    "app.components.filters.fromDate": "Desde",
+    "app.components.filters.toDate": "Hasta",
+    "app.components.filters.actionFilter": "Aplicar",
+    "app.components.metricForm.error.name": "Se requiere nombre",
+    "app.components.metricForm.error.timestamp": "Marca de tiempo inválida",
+    "app.components.metricForm.error.value": "Se requiere valor",
+    "app.components.metricForm.newMetricPoint": "Nuevo Punto",
+    "app.components.metricForm.metricName": "Nombre",
+    "app.components.metricForm.metricValue": "Valor",
+    "app.components.metricForm.metricTimestamp": "Fecha/Hora",
+    "app.components.metricForm.actionSave": "Enviar",
+    "app.components.lineChart.timestamp.legend": "tiempo",
+    "app.components.lineChart.value.legend": "valor",
+    "app.toast.metric.created": "Métrica creada con exito"
+}

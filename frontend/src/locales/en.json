@@ -1,0 +1,22 @@
+{
+    "app.index.metricsDashboard": "Metrics Dashboard",
+    "app.index.controls": "Controls",
+    "app.index.chart": "Chart",
+    "app.components.filters.error.from": "From date must be before to date",
+    "app.components.filters.error.to": "To date must be after from date",
+    "app.components.filters.filterMetrics": "Filter Metrics",
+    "app.components.filters.fromDate": "From Date",
+    "app.components.filters.toDate": "To Date",
+    "app.components.filters.actionFilter": "Apply",
+    "app.components.metricForm.error.name": "Name is required",
+    "app.components.metricForm.error.timestamp": "Invalid timestamp",
+    "app.components.metricForm.error.value": "Value is required",
+    "app.components.metricForm.newMetricPoint": "New Metric Point",
+    "app.components.metricForm.metricName": "Metric Name",
+    "app.components.metricForm.metricValue": "Value",
+    "app.components.metricForm.metricTimestamp": "Time",
+    "app.components.metricForm.actionSave": "Submit",
+    "app.components.lineChart.timestamp.legend": "timestamp",
+    "app.components.lineChart.value.legend": "value",
+    "app.toast.metric.created": "Metric added successfully"
+}
