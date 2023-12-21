@@ -14,8 +14,7 @@ const MetricForm: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (!formData.name.trim()) {
       setErrorMessage(t('app.components.metricForm.error.name'));
       return;
@@ -42,7 +41,7 @@ const MetricForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-4">
+    <div className="flex flex-col p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-4">
       <h2 className="text-lg font-bold mb-4 text-center">{t("app.components.metricForm.newMetricPoint")}</h2>
       <div>
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -86,10 +85,10 @@ const MetricForm: React.FC = () => {
         />
       </div>
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-      <button type="submit" className="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+      <button onClick={handleSubmit}  type="submit" className="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
         {t("app.components.metricForm.actionSave")}
       </button>
-    </form>
+    </div>
   );
 };
 
