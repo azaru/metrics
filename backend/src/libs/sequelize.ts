@@ -15,8 +15,7 @@ if(!sequelize){
             charset: 'utf8',
         },
         dialectModule: require('mysql2'),
-    })
-    sequelize.sync({force: false})
+    });
 }
 
 export default sequelize;

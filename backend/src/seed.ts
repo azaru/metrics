@@ -4,7 +4,7 @@ import sequelize from './libs/sequelize';
 import Metric from './models/metric/model';
 
 (async () => {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max-min+1))+min;
